@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t dockme4evr/jojo -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true dockme4evr/jojo npm run test
