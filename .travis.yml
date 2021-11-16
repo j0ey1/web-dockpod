@@ -1,3 +1,5 @@
+language: generic
+
 sudo: required
 services:
   - docker
@@ -7,3 +9,13 @@ before_install:
 
 script:
   - docker run -e CI=true dockme4evr/jojo npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "dockerweb"
+  env: "Docker-env"
+  bucket-name: "elasticbeanstalk-us-west-2-654096695685"
+  bucket_path: "dockerweb"
+  on:
+    branch: master  
